@@ -43,7 +43,7 @@ storeArray.push(storeOne, storeTwo, storeThree);
 function displayStoreSales() {
     for(let i = 0; i < storeArray.length; i++) {
         let elStoreSales = document.createElement('h1');
-        elStoreSales.setAttribute('Store-name', 'Location','Top-Seller','eom$','Month-Goal','Staff-Count');
+        elStoreSales.setAttribute['Store-name', 'Location','Top-Seller','eom$','Month-Goal','Staff-Count'];
         elBody.appendChild(elStoreSales);
         elStoreSales.innerHTML = (storeArray[i].name);
     }
