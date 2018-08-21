@@ -2,19 +2,21 @@ let PaperArray = [];
 
 let WhichHour = ['6a-7a', '7a-8a', '8a-9a', '9a-10a', '10a-11a', '11a-12p', '12p-1p', '1p-2p', '2p-3p', '3p-4p', '4p-5p', '5p-6p', '7p-8p'];
 
-let elBody = document.getElementById('my-body');
-let elStoreTitle = document.getElementById('store-title');
+//let elBody = document.getElementById('my-body');
+//let elStoreTitle = document.getElementById('store-title');
 //find table by id
 let elTable = document.getElementById('store-table');
+let elForm = document.getElementById('store-form');
 
-//Declaring
+//Declaring a variable to assign("=") a function.
 let PaperCo = function(name, minCustomer, maxCustomer, avg){
     this.storeName = name;
-    //creating a new property giving a new value
+    //creating a new property giving a new value within the object constructor.
     this.minCustomer = minCustomer;
     this.maxCustomer = maxCustomer;
     this.avgSales = avg;
-    this.totalSales = function(){
+    this.totalSalesPerDay = 0;
+    this.totalSalesPerHour = function(){
         return (Math.floor(Math.random() * (this.maxCustomer - this.minCustomer)) + this.minCustomer) * this.avgSales;
     };
 };
@@ -31,18 +33,57 @@ console.log(PaperOG);
 console.log(PaperUptown);
 console.log(PaperEvo);
 console.log(PaperArray);
+console.log(PaperEvo.totalSalesPerHour);
+
+
+function displayTableHeader(){
+    let elRow = document.createElement('tr');
+    elTable.appendChild(elRow);
+    let elNameHeader = document.createElement('th');
+    elRow.appendChild(elNameHeader);
+    elNameHeader.innerHTML = 'Name of School';
+    for(let i = 0; i<WhichHour.length; i++){
+        let elTableHeader = document.createElement('th');
+        elRow.appendChild(elTableHeader);
+        elTableHeader.innerHTML = WhichHour[i];
+    }
+    let elTotalHeader = document.createElement('th');
+    elRow.appendChild(elTotalHeader);
+    elTotalHeader.innerHTML = 'Total';
+}
 
 function displayTotalCookies(store) {
     let elRow = document.createElement('tr');
     elTable.appendChild(elRow);
+    let elRowHeader = document.createElement('th');
+    elRow.appendChild(elRowHeader);
+    elRowHeader.innerHTML = store.storeName;
     for(let i = 0; i < WhichHour.length; i ++) {
+        let result = store.totalSalesPerHour();
         let elTableData = document.createElement('td');
         elRow.appendChild(elTableData);
-        elTableData.innerHTML = store.totalSales();
+        elTableData.innerHTML = result;
+        store.totalSalesPerDay += result;
+        //elTableData.innerHTML = store.totalSalesPerHour;
     }
+    let elTotalTableData = document.createElement('th');
+    elRow.appendChild(elTotalTableData);
+    elTotalTableData.innerHTML = store.totalSalesPerDay;
 }
 
+let storeName = elForm.storeName;
+
+function createNewStore(event){
+    event.preventDefault();
+    let newStore = new PaperCo(storeName.value, 20, 300, 3);
+    console.log(newStore);
+    displayTotalCookies(newStore);
+}
+
+elForm.addEventListener('submit', createNewStore);
+
 function populateTable() {
+    displayTableHeader();
     for(let i = 0; i < PaperArray.length; i++) {
         displayTotalCookies(PaperArray[i]);
     }
@@ -52,33 +93,34 @@ populateTable();
 
 
 
+// function displayTotalSalesPerHourPerHour(store){
+//     let elRow = document.createElement('tr');
+//     elTable.appendChild(elRow);
+//     for(let i = 1; i<WhichHour.length; i++){
+//         let elTableData = document.createElement('td');
+//         elRow.appendChild(elTableData);
+//         elTableData.innerHTML = store.totalSalesPerHour;
+//     }
+// }
+// displayTotalSalesPerHourPerHour();
+// console.log(displayTotalSalesPerHourPerHour);
+
 
 // function displayStoreTitles() {
-//     for(let i = 0; i < PaperArray.length; i++) {
-//         let elStoreTitle = document.createElement('h1');
+//     for(let i = 1; i < PaperArray.length; i++) {
+//         let elStoreTitle = document.createElement('h2');
+//         elStoreTitle.setAttribute('class', 'store-title');
 //         elBody.appendChild(elStoreTitle);
 //         elStoreTitle.innerHTML = PaperArray[i].name;
 //     }
 // }
 
 // displayStoreTitles();
-// console.log(displayStoreTitles);
 
-// function displayTotalSales(store){
-//     let elRow = document.createElement('tr');
-//     elTable.appendChild(elRow);
-//     for(let i = 1; i<WhichHour.length; i++){
-//         let elTableData = document.createElement('td');
-//         elRow.appendChild(elTableData);
-//         elTableData.innerHTML = store.totalSales;
-//     }
-// }
-// displayTotalSales();
-// console.log(displayTotalSales);
 
 // function populateTable(){
 //     for(let i = 0; i<PaperArray; i++){
-//         displayTotalSales(PaperArray[i]);
+//         displayTotalSalesPerHourPerHour(PaperArray[i]);
 //     }
 // }
 

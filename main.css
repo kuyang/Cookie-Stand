@@ -1,0 +1,13 @@
+
+.store-table{
+    border: 1px solid;
+    border-width: 2px;
+}
+
+td{
+    border: 1px solid;
+}
+
+th{
+    border: 1px solid;
+}
