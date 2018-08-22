@@ -17,7 +17,7 @@ let PaperCo = function(name, minCustomer, maxCustomer, avg){
     this.avgSales = avg;
     this.totalSalesPerDay = 0;
     this.totalSalesPerHour = function(){
-        return (Math.floor(Math.random() * (this.maxCustomer - this.minCustomer)) + this.minCustomer) * this.avgSales;
+        return (Math.floor(Math.random() * (this.maxCustomer - this.minCustomer)) + this.minCustomer) * Math.floor(this.avgSales);
     };
 };
 //Math.floor((Math.random() * 100) + 1);
@@ -72,10 +72,13 @@ function displayTotalCookies(store) {
 }
 
 let storeName = elForm.storeName;
+let storeMinimum = elForm.storeMinimum;
+let storeMaximum = elForm.storeMaximum;
+let avgSales = elForm.avgSales;
 
 function createNewStore(event){
     event.preventDefault();
-    let newStore = new PaperCo(storeName.value, 20, 300, 3);
+    let newStore = new PaperCo('Rice Paper: ' + storeName.value, storeMinimum.value, storeMaximum.value, avgSales.value);
     console.log(newStore);
     displayTotalCookies(newStore);
 }

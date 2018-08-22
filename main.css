@@ -1,7 +1,17 @@
-
+@font-face{
+    font-family: CookieMonster;
+    src: url(cookie-monster/CookieMonster.ttf);
+    font-weight: bold;
+}
+h1{
+    font-family: CookieMonster;
+    font-size: 70px;
+    color: blue;
+    text-align: left;
+}
 .store-table{
     border: 1px solid;
-    border-width: 2px;
+    border-width: 20px;
 }
 
 td{
@@ -10,4 +20,8 @@ td{
 
 th{
     border: 1px solid;
+}
+
+body{
+    background-image: url(https://images.freecreatives.com/wp-content/uploads/2016/01/Free-Rice-Paper-Texture-for-Website-Background.jpg);
 }
