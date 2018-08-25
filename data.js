@@ -16,8 +16,10 @@ let PaperCo = function(name, minCustomer, maxCustomer, avg){
     this.maxCustomer = maxCustomer;
     this.avgSales = avg;
     this.totalSalesPerDay = 0;
+    this.salesPerHourArray = [];
     this.totalSalesPerHour = function(){
-        return (Math.floor(Math.random() * (this.maxCustomer - this.minCustomer)) + this.minCustomer) * Math.floor(this.avgSales);
+        return (Math.floor(Math.random() * (this.maxCustomer - this.minCustomer)) + this.minCustomer) * Math.floor(this.avgSales)
+        ;
     };
 };
 //Math.floor((Math.random() * 100) + 1);
@@ -41,7 +43,7 @@ function displayTableHeader(){
     elTable.appendChild(elRow);
     let elNameHeader = document.createElement('th');
     elRow.appendChild(elNameHeader);
-    elNameHeader.innerHTML = 'Name of School';
+    elNameHeader.innerHTML = 'Name of Store';
     for(let i = 0; i<WhichHour.length; i++){
         let elTableHeader = document.createElement('th');
         elRow.appendChild(elTableHeader);
@@ -65,11 +67,42 @@ function displayTotalCookies(store) {
         elTableData.innerHTML = result;
         store.totalSalesPerDay += result;
         //elTableData.innerHTML = store.totalSalesPerHour;
+        store.salesPerHourArray.push(result);
     }
     let elTotalTableData = document.createElement('th');
     elRow.appendChild(elTotalTableData);
     elTotalTableData.innerHTML = store.totalSalesPerDay;
 }
+
+//Display footer info
+function displayFooter(){
+    let elFooterRow = document.createElement('tr');
+    elTable.appendChild(elFooterRow);
+    let elFooterTitle = document.createElement('th');
+    elFooterRow.appendChild(elFooterTitle);
+    elFooterTitle.setAttribute('class', 'footer');
+    elFooterTitle.innerHTML = 'Total';
+    let total = 0;
+    for(let i=0; i<WhichHour.length; i++){
+        let totalSalesPerHour = 0;
+        for(let j=0; j<PaperArray.length; j++){
+            totalSalesPerHour += PaperArray[j].salesPerHourArray[i];
+        }
+        let elTotalSalesPerHourFooter = document.createElement('th');
+        elFooterRow.appendChild(elTotalSalesPerHourFooter);
+        elTotalSalesPerHourFooter.innerHTML = totalSalesPerHour;
+        total += totalSalesPerHour;
+    }
+    console.log(total);
+    let elTotalSalesPerDayFooter = document.createElement('th');
+    elTotalSalesPerDayFooter.setAttribute('class','footer');
+
+    elFooterRow.appendChild(elTotalSalesPerDayFooter);
+    elTotalSalesPerDayFooter.innerHTML = total;
+
+}
+
+
 
 let storeName = elForm.storeName;
 let storeMinimum = elForm.storeMinimum;
@@ -78,9 +111,12 @@ let avgSales = elForm.avgSales;
 
 function createNewStore(event){
     event.preventDefault();
+    elTable.removeChild(elTable.childNodes[elTable.childNodes.length - 1]);
     let newStore = new PaperCo('Rice Paper: ' + storeName.value, storeMinimum.value, storeMaximum.value, avgSales.value);
     console.log(newStore);
+    PaperArray.push(newStore);
     displayTotalCookies(newStore);
+    displayFooter();
 }
 
 elForm.addEventListener('submit', createNewStore);
@@ -90,6 +126,7 @@ function populateTable() {
     for(let i = 0; i < PaperArray.length; i++) {
         displayTotalCookies(PaperArray[i]);
     }
+    displayFooter();
 }
 
 populateTable();

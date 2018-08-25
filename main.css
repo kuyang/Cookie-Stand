@@ -1,3 +1,7 @@
+
+
+
+
 @font-face{
     font-family: CookieMonster;
     src: url(cookie-monster/CookieMonster.ttf);
@@ -22,6 +26,8 @@ th{
     border: 1px solid;
 }
 
-body{
-    background-image: url(https://images.freecreatives.com/wp-content/uploads/2016/01/Free-Rice-Paper-Texture-for-Website-Background.jpg);
-}
+/* body{
+    background-image: url(/Users/Koontang/Documents/CodePartners/Cookie-Stand/pix/wallpaper1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
