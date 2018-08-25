@@ -1,0 +1,33 @@
+
+
+
+
+@font-face{
+    font-family: CookieMonster;
+    src: url(cookie-monster/CookieMonster.ttf);
+    font-weight: bold;
+}
+h1{
+    font-family: CookieMonster;
+    font-size: 70px;
+    color: blue;
+    text-align: left;
+}
+.store-table{
+    border: 1px solid;
+    border-width: 20px;
+}
+
+td{
+    border: 1px solid;
+}
+
+th{
+    border: 1px solid;
+}
+
+/* body{
+    background-image: url(/Users/Koontang/Documents/CodePartners/Cookie-Stand/pix/wallpaper1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
