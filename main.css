@@ -12,11 +12,30 @@ div1{
     border-style: solid;
     border-width: 2px;
 }
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
 h1{
     font-family: CookieMonster;
     font-size: 70px;
     color: blue;
-    text-align: left;
+    text-align: center;
+    
+    width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+h3{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .store-table{
     border: 1px solid;
@@ -30,9 +49,15 @@ td{
 th{
     border: 1px solid;
 }
+body{
+    background-color: lightslategrey;
+    text-align: center;
 
-/* body{
-    background-image: url(/Users/Koontang/Documents/CodePartners/Cookie-Stand/pix/wallpaper1.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-} */
+}img{
+    display: block;
+    max-width: 70%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
